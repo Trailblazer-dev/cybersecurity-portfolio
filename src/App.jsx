@@ -8,6 +8,7 @@ import Skills from "./components/Skills"
 import { useState, useEffect} from "react"
 import { ThemeProvider } from "./contexts/theme"
 import { heroSection } from "./constraints/constraint"
+import { Analytics } from "@vercel/analytics/react";
 
 // Configure Tailwind colors
 import './index.css';
@@ -70,6 +71,8 @@ function App() {
             <Contact />        
         </main>
         <Footer />
+        <Analytics />
+        {/* Ensure the main content is accessible for screen readers */}
       </div>
     </ThemeProvider>
   )
