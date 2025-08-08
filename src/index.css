@@ -68,6 +68,8 @@
 body{
     @apply font-Rale dark:bg-dawn bg-light-background text-light-text dark:text-white transition-colors duration-500;
     scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 /* Scroll styling */
