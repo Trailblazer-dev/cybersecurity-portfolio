@@ -116,7 +116,7 @@ export const writeups = {
       description: "A detailed walkthrough of the 'Blue' room on TryHackMe, focusing on exploiting the EternalBlue vulnerability (MS17-010) on a Windows 7 machine.",
       tags: ["Windows", "Metasploit", "MS17-010"],
       // You can link to a markdown file, a blog post, or a page on your site
-      url: "/writeups/blue", 
+      url: "https://tryhackme.com/room/blue", 
       img: "/thm-blue-placeholder.svg", // Placeholder image for the project
     },
     {
@@ -124,7 +124,7 @@ export const writeups = {
       title: "Kenobi - TryHackMe Room",
       description: "Exploiting a Linux machine with a vulnerable ProFTPD version and escalating privileges by manipulating SUID bits on system binaries.",
       tags: ["Linux", "ProFTPD", "SUID", "Privilege Escalation"],
-      url: "/writeups/kenobi",
+      url: "https://tryhackme.com/room/kenobi",
       img: "/thm-kenobi-placeholder.svg", // Placeholder image for the project
     },
     {
@@ -132,7 +132,7 @@ export const writeups = {
       title: "Basic Pentesting - TryHackMe Room",
       description: "A comprehensive write-up covering enumeration, service scanning, and privilege escalation on a beginner-level penetration testing challenge.",
       tags: ["Enumeration", "Samba", "Privilege Escalation"],
-      url: "/writeups/basic-pentesting",
+      url: "https://tryhackme.com/room/basicpentestingthm",
       img: "/thm-pentesting-placeholder.svg", // Placeholder image for the project
     },
     // Add more of your write-ups here

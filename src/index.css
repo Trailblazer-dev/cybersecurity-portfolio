@@ -44,7 +44,7 @@
 
 @layer components {
     .contain {
-        @apply mx-4 md:mx-10 xl:mx-16 lg:max-w-7xl;
+        @apply mx-auto px-4 md:px-10 xl:px-16 w-full max-w-7xl;
     }
     .head {
         @apply font-heading text-cyber-white font-bold text-2xl lg:text-3xl xl:text-4xl;

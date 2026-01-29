@@ -62,52 +62,82 @@ const Header = () => {
   };
 
   return (
-    <header className={`fixed top-0 left-0 w-full z-30 transition-all duration-300 ${scrolled ? "bg-cyber-bg/80 backdrop-blur-lg shadow-lg shadow-cyber-accent/10" : "bg-transparent"}`}>
+    <header className={`fixed top-0 left-0 w-full z-30 transition-all duration-300 ${scrolled ? "bg-cyber-bg/90 backdrop-blur-md shadow-lg shadow-cyber-accent/10" : "bg-transparent"}`}>
       <motion.div 
         initial={{ y: -25, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5 }}
-        className="mx-auto flex w-[90%] max-w-7xl px-3 justify-between items-center py-3"
+        className="mx-auto flex w-[92%] max-w-7xl justify-between items-center py-4"
       >
-        <div className="md:w-1/5">
+        <div className="flex-shrink-0">
           <a href="#home" className="flex items-center gap-2 group" aria-label="Logo - Back to top">
-            <Shield className="text-cyber-primary transition-all duration-300 group-hover:animate-pulse" size={32}/>
-            <span className="text-cyber-white font-heading font-bold text-lg opacity-0 md:opacity-100 group-hover:text-cyber-primary transition-all duration-300">R.K. Security</span>
+            <Shield className="text-cyber-primary transition-all duration-300 group-hover:animate-pulse" size={28}/>
+            <span className="text-cyber-white font-heading font-bold text-base sm:text-lg group-hover:text-cyber-primary transition-all duration-300">R.K. Security</span>
           </a>
         </div>
         
         <AnimatePresence>
-          {showMenu && <motion.div className="fixed inset-0 bg-black/50 md:hidden z-20" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={handleClose} />}
+          {showMenu && (
+            <motion.div 
+              className="fixed inset-0 bg-black/60 backdrop-blur-sm md:hidden z-20" 
+              initial={{ opacity: 0 }} 
+              animate={{ opacity: 1 }} 
+              exit={{ opacity: 0 }} 
+              onClick={handleClose} 
+            />
+          )}
         </AnimatePresence>
         
+        <nav className="md:block hidden">
+          <ul className="flex items-center gap-8 font-heading">
+            {header.map((item) => (
+              <li key={item.id}>
+                <a
+                  href={`#${item.id}`}
+                  className={`transition-colors duration-300 relative group py-2
+                    ${activeSection === item.id ? "text-cyber-primary" : "text-cyber-white hover:text-cyber-primary"} text-base`}
+                  aria-current={activeSection === item.id ? "page" : undefined}
+                >
+                  {item.title}
+                  {activeSection === item.id && (
+                    <motion.span
+                      className="absolute -bottom-1 left-0 right-0 h-0.5 bg-cyber-primary rounded-full" 
+                      layoutId="activeSection"
+                      transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                    />
+                  )}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        {/* Mobile Menu Content */}
         <AnimatePresence>
-          {(showMenu || window.innerWidth >= 768) && (
+          {showMenu && (
             <motion.div
               ref={menuRef}
-              className="md:w-4/5 fixed top-20 inset-x-4 bg-cyber-accent/90 border border-cyber-primary/20 rounded-xl z-40 shadow-xl py-5 md:static md:flex md:py-0 md:bg-transparent md:border-0 md:shadow-none"
+              className="md:hidden fixed top-0 right-0 h-screen w-[70%] max-w-[300px] bg-cyber-bg border-l border-cyber-accent/30 z-40 shadow-2xl p-10 flex flex-col"
               variants={mobileMenuVariants}
               initial="closed"
               animate="open"
               exit="closed"
             >
-              <ul className="flex flex-col md:flex-row items-center md:justify-end md:w-full gap-4 md:gap-8 font-heading">
+              <div className="flex justify-end mb-8">
+                <button onClick={handleClose} className="text-cyber-white p-2">
+                  <X size={28} />
+                </button>
+              </div>
+              <ul className="flex flex-col gap-6 font-heading">
                 {header.map((item) => (
                   <motion.li key={item.id} variants={menuItemVariants}>
                     <a
                       href={`#${item.id}`}
-                      className={`block px-6 py-3 md:px-0 md:py-0 transition-colors duration-300 relative group
-                        ${activeSection === item.id ? "text-cyber-primary" : "text-cyber-white hover:text-cyber-primary"} text-lg md:text-base`}
+                      className={`block text-xl transition-colors duration-300 
+                        ${activeSection === item.id ? "text-cyber-primary" : "text-cyber-white hover:text-cyber-primary"}`}
                       onClick={handleClose}
-                      aria-current={activeSection === item.id ? "page" : undefined}
                     >
                       {item.title}
-                      {activeSection === item.id && (
-                        <motion.span
-                          className="absolute -bottom-1 left-0 right-0 h-0.5 bg-cyber-primary rounded-full" 
-                          layoutId="activeSection"
-                          transition={{ type: "spring", stiffness: 300, damping: 25 }}
-                        />
-                      )}
                     </a>
                   </motion.li>
                 ))}
@@ -116,26 +146,16 @@ const Header = () => {
           )}
         </AnimatePresence>
         
-        <div className="flex items-center gap-4 z-30">
+        <div className="md:hidden flex items-center gap-4 z-30">
           <motion.button
-            className="text-cyber-white hover:text-cyber-primary md:hidden p-2"
+            className="text-cyber-white hover:text-cyber-primary p-2 bg-cyber-accent/20 rounded-md border border-cyber-accent/30"
             onClick={() => setShowMenu(!showMenu)}
             aria-expanded={showMenu}
             aria-label={showMenu ? "Close menu" : "Open menu"}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
           >
-            <AnimatePresence mode="wait">
-              {showMenu ? (
-                <motion.div key="close" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.3 }}>
-                  <X className="h-6 w-6" />
-                </motion.div>
-              ) : (
-                <motion.div key="menu" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.3 }}>
-                  <AlignJustify className="h-6 w-6" />
-                </motion.div>
-              )}
-            </AnimatePresence>
+            <AlignJustify className="h-6 w-6" />
           </motion.button>
         </div>
       </motion.div>

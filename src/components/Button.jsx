@@ -17,12 +17,12 @@ const Button = forwardRef(({
   
   const background = swit;
   const baseClasses = `
-    w-fit h-fit px-4 py-2 rounded-md transition-all duration-300 hover:cursor-pointer
+    w-fit h-fit px-5 py-2.5 rounded-md transition-all duration-300 hover:cursor-pointer
     focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyber-primary/50
-    font-heading
+    font-heading font-medium tracking-wide active:scale-95
     ${background 
-      ? 'bg-cyber-accent/20 text-cyber-primary border border-cyber-accent hover:bg-cyber-accent/40'
-      : 'text-cyber-secondary hover:text-cyber-primary'
+      ? 'bg-cyber-accent/15 text-cyber-primary border border-cyber-primary/30 hover:bg-cyber-primary/10 hover:border-cyber-primary shadow-sm hover:shadow-cyber-primary/20'
+      : 'text-cyber-secondary hover:text-cyber-primary hover:bg-cyber-primary/5'
     } 
     ${className}`;
 
