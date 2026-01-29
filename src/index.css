@@ -4,11 +4,11 @@
 @import "tailwindcss";
 
 @theme {
-  --color-cyber-bg: #0A192F;
-  --color-cyber-primary: #64FFDA;
+  --color-cyber-bg: #0B0B15;
+  --color-cyber-primary: #00ff41;
   --color-cyber-secondary: #8892B0;
   --color-cyber-white: #CCD6F6;
-  --color-cyber-accent: #3A70A5;
+  --color-cyber-accent: #003B00;
 
   --font-body: Raleway, sans-serif;
   --font-heading: "Roboto Mono", monospace;
