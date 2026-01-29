@@ -1,395 +1,168 @@
-import HeroImg from "../assets/heroImg.png";
-import Code from "../assets/icons/Code.png";
-import Work from "../assets/icons/ProjectsIcon.svg";
-import Design from "../assets/icons/DesignIcon.svg";
-import Art from "../assets/icons/art.svg";
-import DigitalFinance from "../assets/Digital Finance.png";
-import VirtualR from "../assets/VirtualR.png";
-import Perfume from "../assets/perfume.png";
-import AI from "../assets/Aichatting.png";
-import Rental from "../assets/rental.png";
-import Coffe from "../assets/coffee.png";
-import CheeseCake from "../assets/cheesecake.png";
-import Headphone from "../assets/headphone.png";
+// Cybersecurity-Portfolio/src/data/content.js
 
-// Import dark mode tech icons (existing)
-import Reacticon from "../assets/tools/React.png";
-import JavaScript from "../assets/tools/Javascript.png";
-import TypeScript from "../assets/tools/TypeScript.png";
-import NextJs from "../assets/tools/Nextjs.png";
-import Cssicon from "../assets/tools/Group 1.png";
-import Htmlicon from "../assets/tools/HTML5.png";
-import Figmaicon from "../assets/tools/Figma.png";
-import Githubicon from "../assets/tools/Github.png";
-import Shapeicon from "../assets/tools/Shape.png";
-import Insomniaicon from "../assets/tools/Insomnia.png";
+// ==== ICONS ====
+// Using text placeholders for icons. You can replace these with actual icon components (e.g., from lucide-react)
+const TerminalIcon = "[T_]";
+const UserIcon = "[U_]";
+const ShieldIcon = "[S_]";
+const FileTextIcon = "[F_]";
+const MailIcon = "[M_]";
 
-// Import dark mode other tech icons (existing)
-import Bitbucketicon from "../assets/tools/bitbucket.png";
-import Vueicon from "../assets/tools/Vue.png";
-import Nodejsicon from "../assets/tools/Nodejs.png";
-import Tailwindcssicon from "../assets/tools/TailwindCSS.png";
-import Sassicon from "../assets/tools/sass.png";
-import Pythonicon from "../assets/tools/Python.png";
-import Mysqlicon from "../assets/tools/mysql.png";
-import Postgresqlicon from "../assets/tools/Union.png";
-import MongoDBicon from "../assets/tools/leaf.png";
-import Dockericon from "../assets/tools/Docker.png";
-import Planeicon from "../assets/PaperPlaneTilt.png";
-import CopyIcon from "../assets/CopySimple.png";
-import ProfileImg from "../assets/profile.png";
+// ==== ASSETS ====
+// Placeholder for a hero image. Replace with a relevant image.
+const HeroImage = "/placeholder-hero.svg"; 
+const TryHackMeLogo = "/tryhackme_logo_full.svg"; // Example, you'll need to add this asset
 
-// Import light mode tech icons with correct paths
-import ReacticonLight from "../assets/toolslighttheme/React.png";
-import JavaScriptLight from "../assets/toolslighttheme/Javascript.png";
-import TypeScriptLight from "../assets/toolslighttheme/TypeScript.png";
-import NextJsLight from "../assets/toolslighttheme/Nextjs.png";
-import CssiconLight from "../assets/toolslighttheme/Group 1.png";
-import HtmliconLight from "../assets/toolslighttheme/HTML5.png";
-import FigmaiconLight from "../assets/toolslighttheme/Figma.png";
-import GithubiconLight from "../assets/toolslighttheme/Github.png";
-import ShapeiconLight from "../assets/toolslighttheme/Shape.png";
-import InsomniaiconLight from "../assets/toolslighttheme/Insomnia.png";
-
-// Import light mode other tech icons from tools2lighttheme folder
-import BitbucketiconLight from "../assets/tools2lighttheme/bitbucket.png";
-import VueiconLight from "../assets/tools2lighttheme/Vue.png";
-import NodejsiconLight from "../assets/tools2lighttheme/Nodejs.png";
-import TailwindcssiconLight from "../assets/tools2lighttheme/TailwindCSS.png";
-import SassiconLight from "../assets/tools2lighttheme/Shape.png";
-import PythoniconLight from "../assets/tools2lighttheme/Python.png";
-import MysqliconLight from "../assets/tools2lighttheme/Group 26.png";
-import PostgresqliconLight from "../assets/tools2lighttheme/Union.png";
-import MongoDBiconLight from "../assets/tools2lighttheme/Group 27.png";
-import DockericonLight from "../assets/tools2lighttheme/Docker.png";
-import HeroImgLight from "../assets/heroImg.png"; // Add this if you have a light version
-
+// =================================================================================
+// NAVIGATION
+// =================================================================================
 export const header = [
-  {
-    title: "Home",
-    id: "hero",
-  },
-  {
-    title: "About me",
-    id: "about",
-  },
-  {
-    title: "Projects",
-    id: "project",
-  },
-  {
-    title: "Skills",
-    id: "skills",
-  },
-  {
-    title: "Contact",
-    id: "contact",
-  },
+  { title: "Home", id: "home" },
+  { title: "About", id: "about" },
+  { title: "Skills", id: "skills" },
+  { title: "Write-ups", id: "writeups" },
+  { title: "Contact", id: "contact" },
 ];
 
+// =================================================================================
+// HERO SECTION
+// =================================================================================
 export const heroSection = {
-  caption: "👋 Greetings!",
+  caption: "Aspiring Cybersecurity Professional",
   title: "Rich Kariuki",
-  subtitle: "Front-end developer · UI designer",
+  subtitle: "Ethical Hacker & Pentester in Training",
+  Image: HeroImage,
   icons: [
-    {
-      url: "https://www.linkedin.com/in/rich-victor-emanuel-001165196/",
-      alt: "LinkedIn",
-      id: 1,
-    },
-    {
-      url: "https://github.com/Trailblazer-dev",
-      alt: "Github",
-      id: 2,
-    },
-    {
-      url: "mailto:richvictor830@gmail.com",
-      alt: "Email",
-      id: 3,
-    },
+    { url: "https://www.linkedin.com/in/rich-victor-emanuel-001165196/", alt: "LinkedIn", id: 1 },
+    { url: "https://github.com/Trailblazer-dev", alt: "Github", id: 2 },
+    { url: "mailto:richvictor830@gmail.com", alt: "Email", id: 3 },
   ],
-  Image: HeroImg,
-  ImageLight: HeroImgLight || HeroImg, // Use light version or fall back to regular
   button1: "Download CV",
-  button2: "Let's talk",
+  button2: "Let's Talk",
 };
 
-export const ExperienceSection = [
-  {
-    icon: Code,
-    years: "2 years as",
-    title: "Programmer",
-  },
-  {
-    icon: Work,
-    years: "1 year as",
-    title: "Work",
-  },
-  {
-    icon: Design,
-    years: "1 year as",
-    title: "Designer",
-  },
-];
-
-export const ExperienceSection2 = [
-  {
-    subtitle: "Developer",
-    title: "Front-end",
-  },
-  {
-    subtitle: "Dozens of projects and",
-    title: "Experiences",
-  },
-  {
-    subtitle: "Freelance Designer and",
-    title: "UI · UX",
-  },
-];
-
-export const about = 
-  {
-    icon: "🧐 About me",
-    name: "Rich Victor Emanuel Kariuki",
-    img:ProfileImg,
-    desktop: [
-      {
-        desc:
-          "👋My name is Rich victor Emanuel Kariuki , but you can call me just Rich. Nice to meet you!",
-      },
-      {
-        desc:
-          "👨‍💻 For over 2 years, developing and programming interfaces with JavaScript, React JS, and TypeScript.",
-      },
-      {
-        desc:
-          "🎓undergraduate pursing bachelor in applied Computer Science at Egerton University Njoro Campus.",
-      },
-      {
-        desc:
-          "💡Interests in Front-end development with React,Tailwindcss and UX/UI Design.",
-      },
-      {
-        desc: "🚀 Trying to be a little better than yesterday every day.",
-      },
-    ],
-    mobile:[
-        {text:"But you can call me just Rich. Nice to meet you! For over 2 years, I have been developing and programming interfaces with JavaScript, React JS, and TypeScript. Undergraduate pursing bachelor  in applied Computer Science at Egerton University Njoro Campus. Interested in Front-end development with React, React Native, and UX/UI Design."},{
-        text:"🚀 Trying to be a little better than yesterday every day."}
-    ]
-  };
-
-export const portfolio = 
-  {
-    icon: "🔗 Portfolio",
-    title: "Works and projects",
-    container: [
-      {
-        id: 1,
-        title: "UI Design",
-        icon: Design,
-      },
-      {
-        id: 2,
-        title: "Design",
-        icon: Art,
-      },
-      {
-        id: 3,
-        title: "UI Design",
-        icon: Design,
-      },
-    ],
-    projects: [
-      {
-        id: 1,
-        title: "Digital Finance",
-        descrption:
-          "Digital Finance is a fintech application designed to help users manage their finances efficiently.",
-        cta1: "JavaScript",
-        cta2: "TailwindCss",
-        img: DigitalFinance,
-        url: "https://wwfinacingsite.netlify.app/",
-      },
-      {
-        id: 2,
-        title: "VirtualR",
-        descrption:
-          "A sleek and futuristic website promoting VR development tools.",
-        cta1: "React JS",
-        cta2: "TailwindCss",
-        img: VirtualR,
-        url: "https://responsive-landig-page-react-tailwind-css.vercel.app/",
-      },
-      {
-        id: 3,
-        title: "Perfume Landing Page",
-        descrption: "A visually striking perfume advertisement website",
-        cta1: "JavaScript",
-        cta2: "TailwindCss",
-        img: Perfume,
-        url: "https://perfume01.netlify.app/",
-      },
-      {
-        id: 4,
-        title: "AI Chat App",
-        descrption:
-          "A sleek and modern AI chat application landing page with a dark theme and neon accents.",
-        cta1: "React JS",
-        cta2: "TailwindCss",
-        img: AI,
-        url: "https://ai-chatting-website-in-react-js-with.vercel.app/",
-      },
-      {
-        id: 5,
-        title: "House Rental Website ",
-        descrption: "A clean and modern real estate website for renting homes.",
-        cta1: "JavaScript",
-        cta2: "Css",
-        img: Rental,
-        url: "https://rentsl.netlify.app/",
-      },
-      {
-        id: 6,
-        title: "Coffee Website",
-        descrption:
-          "A rich and sophisticated design that highlights premium coffee experiences.",
-        cta1: "React JS",
-        cta2: "TailwindCss",
-        img: Coffe,
-        url: "https://coffe-website-react.vercel.app/",
-      },
-      {
-        id: 7,
-        title: "Cheesecake Website",
-        descrption: "A warm and inviting web design for a cheesecake brand.",
-        cta1: "JavaScript",
-        cta2: "TailwindCss",
-        img: CheeseCake,
-        url: "https://cheesecake2.netlify.app/",
-      },
-      {
-        id: 8,
-        title: "Headphone ",
-        descrption:
-          "A sleek and modern product page for the Beats 3 wireless headphones.",
-        cta1: "JavaScript",
-        cta2: "Css",
-        img: Headphone,
-        url: "https://head12.netlify.app/",
-      },
-    ],
-    more: "See more projects on github",
-  };
-
-export const skills = {
-  icon: "🧑‍💻 Skills · Experiences",
-  title: "Technologies and skills",
-  subtitle: "Techs I use daily",
-  // Dark mode tech stacks (existing)
-  techstacks: [
-    Reacticon,
-    JavaScript,
-    TypeScript,
-    NextJs,
-    Cssicon,
-    Htmlicon,
-    Figmaicon,
-    Githubicon,
-    Shapeicon,
-    Insomniaicon,
+// =================================================================================
+// ABOUT SECTION
+// =================================================================================
+export const about = {
+  icon: UserIcon,
+  name: "Rich Victor Emanuel Kariuki",
+  img: "/hacker-avatar.svg", // Placeholder for a more thematic avatar
+  desktop: [
+    { desc: "👋 I'm Rich, a passionate cybersecurity student with a background in front-end development." },
+    { desc: "🔒 My journey into security started on platforms like TryHackMe, where I've been honing my skills in ethical hacking, network analysis, and vulnerability assessment." },
+    { desc: "🎯 I'm actively seeking a cybersecurity internship where I can apply my problem-solving skills and contribute to a real-world security team." },
+    { desc: "💡 I enjoy the process of breaking things down to understand how they work, and then using that knowledge to build more secure systems." },
   ],
-  // Light mode tech stacks - using the correctly imported light theme icons
-  techstacksLight: [
-    ReacticonLight,
-    JavaScriptLight,
-    TypeScriptLight,
-    NextJsLight,
-    CssiconLight,
-    HtmliconLight,
-    FigmaiconLight,
-    GithubiconLight,
-    ShapeiconLight,
-    InsomniaiconLight,
-  ],
-  // Names for the icons (to help generate light theme paths)
-  techNames: [
-    "React.png",
-    "Javascript.png",
-    "TypeScript.png",
-    "Nextjs.png",
-    "Group 1.png",
-    "HTML5.png",
-    "Figma.png",
-    "Github.png",
-    "Shape.png",
-    "Insomnia.png"
-  ],
-  subtitle2: "Other techs I have worked on projects with",
-  // Dark mode other tech stacks (existing)
-  techstacks2: [
-    Bitbucketicon,
-    Vueicon,
-    Nodejsicon,
-    Tailwindcssicon,
-    Sassicon,
-    Pythonicon,
-    Mysqlicon,
-    Postgresqlicon,
-    MongoDBicon,
-    Dockericon,
-  ],
-  // Light mode for other tech stacks - add this new array
-  techstacks2Light: [
-    BitbucketiconLight,
-    VueiconLight,
-    NodejsiconLight,
-    TailwindcssiconLight, 
-    SassiconLight,
-    PythoniconLight,
-    MysqliconLight,
-    PostgresqliconLight,
-    MongoDBiconLight,
-    DockericonLight,
-  ],
-  // Names for other tech icons
-  techNames2: [
-    "bitbucket.png",
-    "Vue.png",
-    "Nodejs.png",
-    "TailwindCSS.png",
-    "sass.png",
-    "Python.png",
-    "mysql.png",
-    "Union.png",
-    "leaf.png",
-    "Docker.png"
+  mobile: [
+      {text:"I'm a passionate cybersecurity student with a background in front-end development. My journey into security started on platforms like TryHackMe, where I've been honing my skills in ethical hacking and vulnerability assessment. I'm actively seeking a cybersecurity internship to apply my problem-solving skills in a real-world environment."}
   ]
 };
 
+// =================================================================================
+// SKILLS SECTION
+// =================================================================================
+export const skills = {
+  icon: TerminalIcon,
+  title: "Core Competencies",
+  subtitle: "Tools and technologies I work with.",
+  
+  // List your cybersecurity skills here.
+  // I'm using a simple list format. The component will render this.
+  // You can add 'icon' properties if you find suitable SVGs/images.
+  skillset: [
+    { name: "Nmap", category: "Reconnaissance" },
+    { name: "Wireshark", category: "Network Analysis" },
+    { name: "Metasploit", category: "Exploitation" },
+    { name: "Burp Suite", category: "Web Security" },
+    { name: "Nikto", category: "Vulnerability Scanning" },
+    { name: "John the Ripper", category: "Password Cracking" },
+    { name: "Python", category: "Scripting" },
+    { name: "Bash", category: "Scripting" },
+    { name: "Linux", category: "Operating System" },
+    { name: "Docker", category: "Containers" },
+    { name: "TCP/IP", category: "Networking" },
+    { name: "SQL Injection", category: "Web Security" },
+  ]
+};
+
+// =================================================================================
+// WRITE-UPS SECTION (Previously Portfolio)
+// =================================================================================
+export const writeups = {
+  icon: FileTextIcon,
+  title: "CTF Write-ups & Projects",
+  // Example structure for a TryHackMe write-up
+  projects: [
+    {
+      id: 1,
+      title: "Pre-Security Certificate",
+      description: "Successfully completed the Pre-Security learning path on TryHackMe, mastering fundamental cybersecurity concepts including networking, web fundamentals, and Linux.",
+      tags: ["Certificate", "Networking", "Web", "Linux"],
+      url: "https://tryhackme-certificates.s3-eu-west-1.amazonaws.com/THM-CQWYE2SL0O.pdf",
+      img: "/tryhackme_logo_full.svg", 
+    },
+    {
+      id: 2,
+      title: "n8n - TryHackMe Room",
+      description: "Exploited a vulnerability in n8n (workflow automation tool) to gain initial access and escalate privileges. Demonstrated understanding of automation security.",
+      tags: ["Automation", "RCE", "Privilege Escalation"],
+      url: "https://tryhackme.com/room/n8n", // Assuming standard room URL structure or user profile link
+      img: "/n8n room.png", 
+    },
+    {
+      id: 3,
+      title: "Blue - TryHackMe Room",
+      description: "A detailed walkthrough of the 'Blue' room on TryHackMe, focusing on exploiting the EternalBlue vulnerability (MS17-010) on a Windows 7 machine.",
+      tags: ["Windows", "Metasploit", "MS17-010"],
+      // You can link to a markdown file, a blog post, or a page on your site
+      url: "/writeups/blue", 
+      img: "/thm-blue-placeholder.svg", // Placeholder image for the project
+    },
+    {
+      id: 4,
+      title: "Kenobi - TryHackMe Room",
+      description: "Exploiting a Linux machine with a vulnerable ProFTPD version and escalating privileges by manipulating SUID bits on system binaries.",
+      tags: ["Linux", "ProFTPD", "SUID", "Privilege Escalation"],
+      url: "/writeups/kenobi",
+      img: "/thm-kenobi-placeholder.svg", // Placeholder image for the project
+    },
+    {
+      id: 5,
+      title: "Basic Pentesting - TryHackMe Room",
+      description: "A comprehensive write-up covering enumeration, service scanning, and privilege escalation on a beginner-level penetration testing challenge.",
+      tags: ["Enumeration", "Samba", "Privilege Escalation"],
+      url: "/writeups/basic-pentesting",
+      img: "/thm-pentesting-placeholder.svg", // Placeholder image for the project
+    },
+    // Add more of your write-ups here
+  ],
+  more: "View My TryHackMe Profile",
+  moreUrl: "https://tryhackme.com/p/vimrichy" // Replace with your actual profile URL
+};
+
+
+// =================================================================================
+// CONTACT SECTION
+// =================================================================================
 export const contact = {
-  icon: "📬 Contacts",
-  title: "Get in touch",
+  icon: MailIcon,
+  title: "Contact Me",
   whatapp: "Let's talk",
   email: {
-    icon: Planeicon,
+    icon: MailIcon,
     text: "richvictor830@gmail.com",
-    copyicon: CopyIcon,
+    copyicon: "[C_]",
   },
 };
 
+// =================================================================================
+// FOOTER SECTION
+// =================================================================================
 export const footer = {
-  copyright: "Copyright © Rich Kariuki: 2025",
+  copyright: `Copyright © ${new Date().getFullYear()} Rich Kariuki`,
   socials: [
-    {
-      url: "https://www.linkedin.com/in/rich-victor-emanuel-001165196/",
-      alt: "LinkedIn",
-      id: 1,
-    },
-    {
-      url: "https://github.com/Trailblazer-dev",
-      alt: "Github",
-      id: 2,
-    }
+    { url: "https://www.linkedin.com/in/rich-victor-emanuel-001165196/", alt: "LinkedIn", id: 1 },
+    { url: "https://github.com/Trailblazer-dev", alt: "Github", id: 2 },
   ],
 };

@@ -1,19 +1,15 @@
+
 import { footer } from "../constraints/constraint";
 import { motion } from "framer-motion";
-import { Github, Heart, Linkedin, Moon, Sun } from "lucide-react";
-import useTheme from '../contexts/theme';
+import { Github, Linkedin, Terminal } from "lucide-react";
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear();
-  const {darkMode, toggleDarkMode} = useTheme();
-  
-  // Map icon names to Lucide components
   const getIconComponent = (name) => {
     switch (name.toLowerCase()) {
       case 'linkedin':
-        return <Linkedin size={20} className="dark:text-lightdawn/80 text-dawn/50 hover:text-title dark:hover:text-lightdawn transition-colors" />;
+        return <Linkedin size={20} className="text-cyber-secondary hover:text-cyber-primary transition-colors" />;
       case 'github':
-        return <Github size={20} className={`${darkMode ? 'text-lightdawn' : 'text-dawn/50 hover:text-title'} dark:hover:text-lightdawn transition-colors`} />;
+        return <Github size={20} className="text-cyber-secondary hover:text-cyber-primary transition-colors" />;
       default:
         return null;
     }
@@ -21,11 +17,7 @@ const Footer = () => {
 
   return (
     <motion.footer 
-      className={`w-full 
-      ${darkMode 
-        ? "dark:bg-lightdawn/5 dark:border-lightdawn/10" 
-        : "bg-gradient-to-r from-light-accent/5 to-light-secondary/5 border-light-accent/10"} 
-      border-t py-8 mt-6`}
+      className="w-full border-t border-cyber-accent/30 py-8 mt-10"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
@@ -34,66 +26,31 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row justify-between items-center gap-6">
         {/* Left side - Copyright and tagline */}
         <motion.div
-          className="flex flex-col items-center sm:items-start gap-1"
-          initial={{ y: 10 }}
-          whileInView={{ y: 0 }}
+          className="flex flex-col items-center sm:items-start"
+          initial={{ y: 10, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.4 }}
+          transition={{ duration: 0.5 }}
         >
-          <p className={`${darkMode ? "dark:text-title/70" : "text-light-text/80"} select-none text-sm sm:text-base flex items-center`}>
-            {footer.copyright.replace(/\d{4}/, currentYear.toString())}
-            <motion.span 
-              className="inline-flex items-center ml-1"
-              animate={{ scale: [1, 1.2, 1] }}
-              transition={{ repeat: Infinity, duration: 2 }}
-            >
-              <Heart size={14} className={`${darkMode ? "dark:text-lightdawn" : "text-light-accent"} ml-1`} fill="currentColor" />
-            </motion.span>
+          <p className="text-cyber-secondary select-none text-sm sm:text-base flex items-center">
+            {footer.copyright}
+            <Terminal size={14} className="text-cyber-primary ml-2" />
           </p>
-          <p className={`${darkMode ? "dark:text-title/50" : "text-light-text/60"} text-xs sm:text-sm mt-1`}>Frontend Developer & UI Designer</p>
+          <p className="text-cyber-accent text-xs sm:text-sm mt-1">
+            Aspiring Cybersecurity Analyst
+          </p>
         </motion.div>
         
-        {/* Right side - Social links and theme toggle */}
+        {/* Right side - Social links */}
         <div className="flex items-center gap-4">
-          {/* Theme toggle - Enhanced for better visibility */}
-          <motion.button
-            onClick={toggleDarkMode}
-            className={`p-2 
-            ${darkMode 
-              ? "dark:hover:bg-lightdawn/10 dark:bg-lightdawn/5" 
-              : "hover:bg-light-accent/20 bg-white shadow-sm border border-light-accent/20"} 
-            rounded-full transition-colors flex items-center justify-center`}
-            whileHover={{ 
-              y: -3, 
-              backgroundColor: darkMode ? "#7b4ae233" : "rgba(255, 125, 84, 0.2)"
-            }}
-            whileTap={{ scale: 0.95 }}
-            aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
-            title={darkMode ? "Switch to light mode" : "Switch to dark mode"}
-          >
-            {darkMode ? (
-              <Moon size={20} className="text-lightdawn" />
-            ) : (
-              <Sun size={20} className="text-light-accent" />
-            )}
-          </motion.button>
-          
-          {/* Social media links - Enhanced for light theme */}
           {footer.socials.map((social) => (
             <motion.a 
               href={social.url} 
               target="_blank" 
               rel="noopener noreferrer" 
               key={social.id}
-              className={`p-2 
-              ${darkMode 
-                ? "dark:hover:bg-lightdawn/10 dark:bg-lightdawn/5" 
-                : "hover:bg-light-accent/20 bg-white shadow-sm border border-light-accent/20"} 
-              rounded-full transition-colors flex items-center justify-center`}
-              whileHover={{ 
-                y: -3, 
-                backgroundColor: darkMode ? "#7b4ae233" : "rgba(255, 125, 84, 0.2)"
-              }}
+              className="p-2 bg-cyber-accent/20 hover:bg-cyber-accent/50 rounded-full transition-colors"
+              whileHover={{ y: -3 }}
               whileTap={{ scale: 0.95 }}
               aria-label={social.alt}
               title={social.alt}
@@ -102,16 +59,6 @@ const Footer = () => {
             </motion.a>
           ))}
         </div>
-      </div>
-
-      {/* Optional attribution line */}
-      <div className="text-center mt-4 text-xs dark:text-title/40 text-dawn/60">
-        <motion.p 
-          className="dark:hover:text-lightdawn/80 hover:text-dawn/80 transition-colors duration-300"
-          whileHover={{ scale: 1.05 }} 
-        >
-          Thank you for visiting
-        </motion.p>
       </div>
     </motion.footer>
   );
