@@ -1,0 +1,93 @@
+[
+  {
+    "id": "def-1",
+    "category": "Defensive Thinking",
+    "type": "Incident Report",
+    "title": "Brute Force Attack on SSH",
+    "description": "An analysis of an attempted SSH brute-force attack, including log identification, timeline of events, and mitigation steps taken.",
+    "tags": ["Logs", "SSH", "Mitigation"],
+    "details": {
+      "scenario": "Multiple failed SSH login attempts from a single IP address were detected in the auth.log file.",
+      "analysis": "Identified 500+ failed attempts within 10 minutes. The attacker was targeting common usernames like 'admin', 'root', and 'user'.",
+      "action": "Implemented fail2ban to automatically ban IPs after 5 failed attempts and disabled password authentication in favor of SSH keys.",
+      "outcome": "Successful mitigation of the attack and improved server security posture."
+    }
+  },
+  {
+    "id": "def-2",
+    "category": "Defensive Thinking",
+    "type": "Use Case",
+    "title": "Detection Rule for Ransomware Activity",
+    "description": "Creation and documentation of a Sigma rule to detect common ransomware file extension changes.",
+    "tags": ["Sigma", "Detection", "Ransomware"],
+    "details": {
+      "rationale": "Ransomware often renames large numbers of files quickly. Detecting this pattern can trigger an early alert.",
+      "rule": "selection:\n  EventID: 11\n  TargetFilename|endswith:\n    - '.locked'\n    - '.crypted'\n    - '.enc'",
+      "implementation": "Deployed to the SIEM to monitor File System events across critical servers."
+    }
+  },
+  {
+    "id": "def-3",
+    "category": "Defensive Thinking",
+    "type": "Threat Breakdown",
+    "title": "Analyzing the Log4j Vulnerability",
+    "description": "Turning the Log4j (CVE-2021-44228) threat report into actionable defensive steps for an enterprise environment.",
+    "tags": ["CVE", "Threat Intelligence", "Log4j"],
+    "details": {
+      "summary": "Log4j allows remote code execution via a specially crafted string in logs.",
+      "actions": [
+        "Identified all internal applications using Log4j.",
+        "Patched to version 2.17.1 or higher.",
+        "Implemented WAF rules to block JNDI lookup strings."
+      ]
+    }
+  },
+  {
+    "id": "prac-1",
+    "category": "Practitioner Mindset",
+    "type": "Attack Path Walkthrough",
+    "title": "From Low-Privileged User to Domain Admin",
+    "description": "A step-by-step documentation of an attack path in an Active Directory environment, showing how misconfigurations lead to full compromise.",
+    "tags": ["Active Directory", "Privilege Escalation", "Kerberoasting"],
+    "details": {
+      "step_1": "Initial access gained via phished credentials.",
+      "step_2": "Enumerated the domain and identified Kerberoastable service accounts.",
+      "step_3": "Cracked the service account password and used it to escalate to Domain Admin via a misconfigured GPO."
+    }
+  },
+  {
+    "id": "prac-2",
+    "category": "Practitioner Mindset",
+    "type": "Cloud Investigation",
+    "title": "AWS S3 Bucket Misconfiguration",
+    "description": "Investigating the security impact of an exposed S3 bucket and explaining how it could lead to data exfiltration.",
+    "tags": ["AWS", "Cloud Security", "S3"],
+    "details": {
+      "discovery": "Found a public-facing S3 bucket containing sensitive customer data.",
+      "impact": "Potential GDPR violation and loss of brand reputation.",
+      "resolution": "Enforced 'Block Public Access' at the account level and implemented IAM policies with least privilege."
+    }
+  },
+  {
+    "id": "prac-3",
+    "category": "Practitioner Mindset",
+    "type": "Improvement Proposal",
+    "title": "Zero Trust Architecture for Remote Work",
+    "description": "A proposal for moving from a traditional VPN-based remote access model to a Zero Trust approach.",
+    "tags": ["Zero Trust", "Architecture", "Identity"],
+    "details": {
+      "current_state": "Users connect via VPN and have broad network access.",
+      "proposed_state": "Implement Identity-Aware Proxy (IAP) and MFA for every application access.",
+      "benefit": "Reduction of lateral movement risk and improved visibility."
+    }
+  },
+  {
+    "id": "ctf-1",
+    "category": "CTF Write-ups",
+    "title": "Blue - TryHackMe",
+    "description": "Exploiting the EternalBlue vulnerability (MS17-010) on a Windows 7 machine.",
+    "tags": ["Windows", "Metasploit", "MS17-010"],
+    "url": "https://tryhackme.com/room/blue",
+    "img": "/thm-blue-placeholder.svg"
+  }
+]

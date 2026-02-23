@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
-import { header, heroSection, about, skills, writeups, contact, footer } from '../constraints/constraint';
-import { motion } from 'framer-motion';
+import { heroSection, about, skills, contact, footer } from '../constraints/constraint';
 
+// eslint-disable-next-line react/prop-types
 const LinuxTerminal = ({ onSwitchMode }) => {
   const [input, setInput] = useState('');
   const [output, setOutput] = useState([
@@ -20,7 +20,7 @@ const LinuxTerminal = ({ onSwitchMode }) => {
     }
   }, [output]);
 
-  const handleCommand = (cmd) => {
+  const handleCommand = async (cmd) => {
     const trimmedCmd = cmd.trim().toLowerCase();
     const newOutput = [...output, { type: 'command', content: `visitor@portfolio:~$ ${cmd}` }];
 
@@ -32,7 +32,7 @@ const LinuxTerminal = ({ onSwitchMode }) => {
             'Available commands:',
             '  about     - Display information about me',
             '  skills    - List technical skills',
-            '  writeups  - Show CTF write-ups and projects',
+            '  writeups  - Show CTF write-ups and projects (Real-time data)',
             '  contact   - Display contact information',
             '  gui       - Switch to Window (GUI) mode',
             '  clear     - Clear the terminal screen',
@@ -64,14 +64,20 @@ const LinuxTerminal = ({ onSwitchMode }) => {
         });
         break;
       case 'writeups':
-        newOutput.push({
-          type: 'response',
-          content: [
-            `--- ${writeups.title} ---`,
-            '',
-            ...writeups.projects.map(p => `* ${p.title}\n  ${p.description}\n  Tags: ${p.tags.join(', ')}\n  Link: ${p.url}\n`)
-          ]
-        });
+        try {
+          const res = await fetch('http://localhost:5000/api/projects');
+          const projects = await res.json();
+          newOutput.push({
+            type: 'response',
+            content: [
+              `--- PROJECTS & WRITE-UPS (Backend API) ---`,
+              '',
+              ...projects.map(p => `* [${p.category || 'CTF'}] ${p.title}\n  ${p.description}\n  Tags: ${p.tags.join(', ')}\n  ${p.url ? 'Link: ' + p.url : 'Type: ' + p.type}\n`)
+            ]
+          });
+        } catch {
+          newOutput.push({ type: 'error', content: 'Failed to fetch projects from backend.' });
+        }
         break;
       case 'contact':
         newOutput.push({

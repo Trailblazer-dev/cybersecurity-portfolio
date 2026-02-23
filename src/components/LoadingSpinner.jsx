@@ -24,7 +24,7 @@ const LoadingSpinner = () => {
         transition={{ delay: 0.5 }}
         className="text-cyber-white font-medium text-lg font-heading"
       >
-        Loading Rich's Portfolio...
+        Loading Rich&apos;s Portfolio...
       </motion.div>
 
       <motion.div 

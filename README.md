@@ -24,11 +24,11 @@ Built with **React 19**, **Tailwind CSS v4**, and **Framer Motion**.
 ## 🛠️ Tech Stack
 
 -   **Frontend**: React 19 (Hooks, Functional Components)
--   **Styling**: [Tailwind CSS v4](https://tailwindcss.com/) (Next-gen CSS engine)
+-   **Backend**: Node.js & Express (API for projects & log analysis)
+-   **Styling**: [Tailwind CSS v4](https://tailwindcss.com/)
 -   **Animations**: [Framer Motion](https://www.framer.com/motion/)
 -   **Icons**: [Lucide React](https://lucide.dev/)
 -   **Build Tool**: [Vite 6](https://vitejs.dev/)
--   **Analytics**: Vercel Analytics
 
 ---
 
@@ -52,15 +52,12 @@ Built with **React 19**, **Tailwind CSS v4**, and **Framer Motion**.
     npm install
     ```
 
-3.  **Start development server**
+3.  **Start full-stack development server**
     ```bash
-    npm run dev
+    npm run dev:all
     ```
 
-4.  **Build for production**
-    ```bash
-    npm run build
-    ```
+This will start both the Vite frontend (http://localhost:5173) and the Express backend (http://localhost:5000).
 
 ---
 
@@ -70,22 +67,23 @@ Built with **React 19**, **Tailwind CSS v4**, and **Framer Motion**.
 /src
 ├── components/                  
 │   ├── LinuxTerminal.jsx        # Default terminal UI emulator
-│   ├── About.jsx                # About section (GUI)
-│   ├── Skills.jsx               # Technical skills grid (GUI)
-│   ├── Writeups.jsx             # Project gallery with filters (GUI)
-│   └── Hero.jsx                 # Responsive landing section (GUI)
-├── constraints/                 
-│   └── constraint.js            # Centralized content & project data
-├── index.css                    # Tailwind v4 configuration & theme
-└── App.jsx                      # Main entry point with Mode Switching logic
+│   ├── LogAnalyzer.jsx          # Interactive defensive thinking tool
+│   ├── Writeups.jsx             # Fetches projects from Backend API
+│   └── ...
+/server
+├── data/
+│   └── projects.json            # Centralized project data (Incident Reports, etc.)
+├── index.js                     # Express server entry point
+└── .env                         # Backend configuration
 ```
 
 ---
 
 ## 🔧 Customization
 
-You can update all portfolio content (name, bio, skills, projects) by editing a single file:
-`src/constraints/constraint.js`
+-   **Frontend UI & Static Content**: Edit `src/constraints/constraint.js`
+-   **Projects & Structured Reports**: Edit `server/data/projects.json` (Fulfills `docs/specification.md` requirements)
+-   **Log Analysis Rules**: Update logic in `server/index.js`
 
 ---
 

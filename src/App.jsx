@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import About from "./components/About";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
@@ -6,6 +6,7 @@ import Header from "./components/Header";
 import Hero from "./components/Hero";
 import Writeups from "./components/Writeups";
 import Skills from "./components/Skills";
+import LogAnalyzer from "./components/LogAnalyzer";
 import LinuxTerminal from "./components/LinuxTerminal";
 import { Analytics } from "@vercel/analytics/react";
 import { Terminal } from "lucide-react";
@@ -14,7 +15,7 @@ import { Terminal } from "lucide-react";
 import './index.css';
 
 function App() {
-  const [uiMode, setUiMode] = useState('linux');
+  const [uiMode, setUiMode] = useState('window');
 
   // Effect to toggle body scroll based on mode if needed, 
   // but simpler just to switch components.
@@ -44,13 +45,16 @@ function App() {
         </button>
       </div>
 
-      <Header />
+      <Header onSwitchTerminal={switchMode} />
       <main id="main-content">
           <Hero />
-          <About />
-          <Writeups />
-          <Skills />
-          <Contact />
+          <div className="space-y-12 md:space-y-20 pb-20">
+            <About />
+            <Skills />
+            <Writeups />
+            <LogAnalyzer />
+            <Contact />
+          </div>
       </main>
       <Footer />
       <Analytics />
