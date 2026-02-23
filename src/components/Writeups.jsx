@@ -3,7 +3,7 @@ import Button from "./Button";
 import ProjectModal from "./ProjectModal";
 import { motion } from "framer-motion";
 import { FileText, Shield, UserCheck, Trophy } from "lucide-react";
-import { writeups as hardcodedData } from "../constraints/constraint";
+import { writeups as hardcodedData, CONFIG } from "../constraints/constraint";
 
 const Writeups = () => {
   const [activeFilter, setActiveFilter] = useState("all");
@@ -13,7 +13,7 @@ const Writeups = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/projects')
+    fetch(`${CONFIG.API_URL}/api/projects`)
       .then(res => {
         if (!res.ok) throw new Error('Network response was not ok');
         return res.json();

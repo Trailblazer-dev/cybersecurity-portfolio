@@ -12,6 +12,16 @@ const MailIcon = "[M_]";
 const HeroImage = "/placeholder-hero.svg"; 
 
 // =================================================================================
+// CONFIGURATION
+// =================================================================================
+export const CONFIG = {
+  // Replace this with your actual backend URL after hosting (e.g., https://your-app.onrender.com)
+  API_URL: (typeof import.meta !== 'undefined' && import.meta.env?.VITE_API_URL) 
+    ? import.meta.env.VITE_API_URL 
+    : "http://localhost:5000"
+};
+
+// =================================================================================
 // NAVIGATION
 // =================================================================================
 export const header = [

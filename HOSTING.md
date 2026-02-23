@@ -1,82 +1,76 @@
 # Hosting Guide: Cybersecurity Portfolio
 
-This project consists of a **React (Vite)** frontend and a **Node.js (Express)** backend. To have a fully functional site, both components must be hosted and communicating with each other.
+This project is optimized for deployment using a **React (Vite)** frontend and a **Node.js (Express)** backend. The architecture is designed to be "monorepo-friendly," allowing you to manage both from a single repository.
 
 ---
 
 ## Architecture Overview
 
-1.  **Frontend:** Static files served to the user's browser.
-2.  **Backend:** A running server that provides the `/api/projects` data and the `/api/analyze-log` logic.
-3.  **Communication:** The frontend makes HTTP requests to the backend URL.
+1.  **Frontend:** Static files built with Vite and hosted on a CDN (Vercel/Netlify).
+2.  **Backend:** A Node.js server running Express, providing the `/api/projects` data and `/api/analyze-log` logic.
+3.  **Centralized Config:** All API communication is routed through `src/constraints/constraint.js` using the `CONFIG.API_URL` constant.
 
 ---
 
-## Recommended Hosting Strategy (PaaS)
-
-The easiest way to host this for free or low cost is to use "Platform as a Service" providers.
+## Recommended Hosting Strategy
 
 ### 1. Host the Backend (Express)
-**Recommended Platform:** [Render](https://render.com/) or [Railway](https://railway.app/)
+**Platform:** [Render](https://render.com/) (Recommended for its "Web Service" support)
 
 *   **Steps for Render:**
     1.  Create a new **Web Service**.
     2.  Connect your GitHub repository.
-    3.  Set the **Root Directory** to `server` (or leave as root if your package.json handles it).
+    3.  **Root Directory:** Leave as the default (root `/`).
     4.  **Build Command:** `npm install`
-    5.  **Start Command:** `node index.js`
-    6.  **Environment Variables:** Add `PORT=10000` (Render will provide this).
+    5.  **Start Command:** `npm start` (This triggers `node server/index.js` as configured in `package.json`).
+    6.  **Environment Variables:** Render automatically assigns a `PORT`. If your local `.env` has specific secrets, add them here.
 
 ### 2. Host the Frontend (React/Vite)
-**Recommended Platform:** [Vercel](https://vercel.com/) or [Netlify](https://netlify.com/)
+**Platform:** [Vercel](https://vercel.com/) or [Netlify](https://netlify.com/)
 
 *   **Steps for Vercel:**
-    1.  Create a new project and connect your GitHub repo.
-    2.  Vercel will detect it as a Vite project.
+    1.  Connect your GitHub repo.
+    2.  **Framework Preset:** Vite.
     3.  **Build Command:** `npm run build`
     4.  **Output Directory:** `dist`
-    5.  **Environment Variables:** Create a variable named `VITE_API_URL` and set it to your **Backend URL** (e.g., `https://your-backend.onrender.com`).
+    5.  **Environment Variables (CRITICAL):** 
+        *   Add a variable named **`VITE_API_URL`**.
+        *   Set the value to your **Backend URL** from Render (e.g., `https://your-backend.onrender.com`).
+        *   *Note: Do not include a trailing slash.*
 
 ---
 
-## Critical Code Adjustments for Production
+## Environment Configuration
 
-Before deploying, you must update the hardcoded `localhost` URLs in your frontend so they can point to your live server.
+The project uses a tiered configuration system in `src/constraints/constraint.js`:
 
-### 1. Update Frontend API Calls
-In files like `Writeups.jsx` and `LogAnalyzer.jsx`, change:
 ```javascript
-// From:
-fetch('http://localhost:5000/api/projects')
-
-// To (using Environment Variables):
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
-fetch(`${API_URL}/api/projects`)
+export const CONFIG = {
+  API_URL: (typeof import.meta !== 'undefined' && import.meta.env?.VITE_API_URL) 
+    ? import.meta.env.VITE_API_URL 
+    : "http://localhost:5000"
+};
 ```
 
-### 2. Update Backend CORS
-In `server/index.js`, ensure CORS allows your frontend domain:
-```javascript
-app.use(cors({
-  origin: 'https://your-portfolio-frontend.vercel.app' // Replace with your actual live URL
-}));
-```
+1.  **Production:** Uses the `VITE_API_URL` variable set in your hosting provider's dashboard.
+2.  **Local Dev:** Uses the value in your root `.env` file or defaults to `http://localhost:5000`.
 
 ---
 
-## Option 2: Single VPS (Advanced)
-If you prefer a single server (DigitalOcean Droplet, AWS EC2, or Linode):
+## Troubleshooting & CORS
 
-1.  **Install Node.js and Nginx.**
-2.  **Clone the repo.**
-3.  **Frontend:** Run `npm run build` and point Nginx to the `/dist` folder.
-4.  **Backend:** Use a process manager like **PM2** to keep the `server/index.js` running in the background.
-5.  **Reverse Proxy:** Configure Nginx to route requests from `yourdomain.com/api` to `localhost:5000`.
-
----
+If you encounter "CORS" errors in the browser console:
+1.  Go to `server/index.js`.
+2.  Ensure `app.use(cors())` is active.
+3.  For maximum security in production, restrict origins:
+    ```javascript
+    app.use(cors({
+      origin: 'https://your-live-portfolio-url.vercel.app'
+    }));
+    ```
 
 ## Deployment Checklist
-- [ ] Backend is running and API is reachable via tool like Postman.
-- [ ] Frontend environment variables point to the correct Backend URL.
-- [ ] CORS is configured on the backend to allow requests from the frontend.
-- [ ] `projects.json` is included in the server deployment.
+- [ ] Backend `npm start` command is verified in Render logs.
+- [ ] Frontend `VITE_API_URL` environment variable is set in the hosting dashboard.
+- [ ] `server/data/projects.json` contains your latest write-ups.
+- [ ] The "Log Analyzer" works on the live site (confirms end-to-end connectivity).

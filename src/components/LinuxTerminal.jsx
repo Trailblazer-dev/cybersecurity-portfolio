@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { heroSection, about, skills, contact, footer } from '../constraints/constraint';
+import { heroSection, about, skills, contact, footer, CONFIG } from '../constraints/constraint';
 
 // eslint-disable-next-line react/prop-types
 const LinuxTerminal = ({ onSwitchMode }) => {
@@ -65,7 +65,7 @@ const LinuxTerminal = ({ onSwitchMode }) => {
         break;
       case 'writeups':
         try {
-          const res = await fetch('http://localhost:5000/api/projects');
+          const res = await fetch(`${CONFIG.API_URL}/api/projects`);
           const projects = await res.json();
           newOutput.push({
             type: 'response',

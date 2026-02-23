@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Shield, Search, AlertTriangle, CheckCircle, Info } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { CONFIG } from "../constraints/constraint";
 
 const LogAnalyzer = () => {
   const [log, setLog] = useState('');
@@ -11,7 +12,7 @@ const LogAnalyzer = () => {
     if (!log.trim()) return;
     setAnalyzing(true);
     try {
-      const response = await fetch('http://localhost:5000/api/analyze-log', {
+      const response = await fetch(`${CONFIG.API_URL}/api/analyze-log`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ log }),
